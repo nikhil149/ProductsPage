@@ -1,5 +1,6 @@
 const ProductItem = (props) => {
     const availability = props.available === 0 ? "Not Available" : "Available";
+    // console.log(props.available)
     return (
         <div>
             <div>

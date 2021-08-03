@@ -9,7 +9,7 @@ function App() {
             price: 30,
             available: 1,
             vendor: "Himachal Pvt Ltd",
-            category: "Vegtables",
+            category: "Vegetables",
         },
         {
             name: "Banana",
