@@ -1,8 +1,11 @@
 import { useState } from "react";
 import ProductFilter from "./ProductFilter";
 import ProductItem from "./ProductItem";
+import ProductModal from "./ProductModal";
 const Products = ({ items }) => {
     const [category, setCategory] = useState("Fruits");
+    const [isModal, setIsModal] = useState(false)
+    const [productName, setProductName] = useState('')
 
     const filterChangeHandler = (selectedCategory) => {
         setCategory(selectedCategory);
@@ -10,7 +13,16 @@ const Products = ({ items }) => {
     const filteredProducts = items.filter(item => {
         return item.category === category;
       });
+    
+      const buyProductsModal = (modal,name)=>{
+        setIsModal(modal)
+        setProductName(name)
+      }
 
+      const closeProductModal=()=>{
+          setIsModal(false)
+          setProductName('')
+      }
     return (
         <div>
             <ProductFilter
@@ -25,8 +37,10 @@ const Products = ({ items }) => {
                     vendor={item.vendor}
                     category={item.category}
                     available={item.available}
+                    onSetModal={buyProductsModal}
                 />
             ))}
+            {isModal && <ProductModal name={productName} onConfirm={closeProductModal}/>}
         </div>
     );
 };
